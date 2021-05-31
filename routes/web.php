@@ -3,6 +3,7 @@
 use App\Http\Controllers\BaseController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,5 +43,10 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/category/edit/{id}', [CategoryController::class, 'edit'])->name('category.edit');
     Route::post('/category/edit/{id}', [CategoryController::class, 'update'])->name('category.update');
     Route::post('/category/delete', [CategoryController::class, 'destroy'])->name('category.delete');
+
+    // Category controller routes
+    Route::get('admin/products', [ProductController::class, 'index'])->name('product.list');
+    Route::get('admin/product/create', [ProductController::class, 'create'])->name('product.create');
+    Route::post('admin/product/create', [ProductController::class, 'store'])->name('product.store');
 
 });
