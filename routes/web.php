@@ -45,8 +45,13 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('/category/delete', [CategoryController::class, 'destroy'])->name('category.delete');
 
     // Category controller routes
-    Route::get('admin/products', [ProductController::class, 'index'])->name('product.list');
-    Route::get('admin/product/create', [ProductController::class, 'create'])->name('product.create');
-    Route::post('admin/product/create', [ProductController::class, 'store'])->name('product.store');
+    Route::get('/products', [ProductController::class, 'index'])->name('product.list');
+    Route::get('/product/create', [ProductController::class, 'create'])->name('product.create');
+    Route::post('/product/create', [ProductController::class, 'store'])->name('product.store');
+    Route::get('/product/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
+    Route::post('/product/edit/{id}', [ProductController::class, 'update'])->name('product.update');
+    Route::post('/product/delete', [ProductController::class, 'destroy'])->name('product.delete');
+    Route::get('/product/details/{id}', [ProductController::class, 'extraDetails'])->name('product.extraDetails');
+    Route::post('/product/details/{id}', [ProductController::class, 'extraDetailsStore'])->name('product.extraDetailsStore'); 
 
 });
