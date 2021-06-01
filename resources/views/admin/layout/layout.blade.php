@@ -27,6 +27,8 @@
     <link href="{{ asset('admin_theme/vendors/jqvmap/dist/jqvmap.min.css') }}" rel="stylesheet" />
     <!-- bootstrap-daterangepicker -->
     <link href="{{ asset('admin_theme/vendors/bootstrap-daterangepicker/daterangepicker.css') }}" rel="stylesheet">
+    <!-- Fontawesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
     <!-- Custom Theme Style -->
     <link href="{{ asset('admin_theme/build/css/custom.min.css') }}" rel="stylesheet">

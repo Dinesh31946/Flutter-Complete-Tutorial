@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductDetails;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -120,5 +120,26 @@ class ProductController extends Controller
         $product = Product::find($id);
         $product->delete();
         return response()->json('Category successfully deleted.');
+    }
+
+    public function extraDetails(Request $request)
+    {
+        $id = $request->id;
+        $product = Product::where('id', $id)->with('ProductDetails')->first();
+        return view('admin.product.extraDetails', compact('id', 'product'));
+    }
+
+    public function extraDetailsStore(Request $request)
+    {
+        $id = $request->id;
+        $data = array(
+            'title' => $request->title,
+            'product_id' => $id,
+            'total_itmes' => $request->total_itmes,
+            'description' => $request->description
+        );
+
+        $details = ProductDetails::updateOrCreate(['product_id' => $id], $data);
+        return redirect()->route('product.list');
     }
 }

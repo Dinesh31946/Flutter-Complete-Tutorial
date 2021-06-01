@@ -10,7 +10,7 @@
                 </div>
                 <div class="x_content">
                     <br>
-                    <form id="demo-form2" action="{{ route('product.store') }}" method="post"
+                    <form id="demo-form2" action="{{ route('product.update', $product->id) }}" method="post"
                         class="form-horizontal form-label-left" enctype="multipart/form-data">
                         @csrf
                         <div class="item form-group">
@@ -18,8 +18,8 @@
                                     class="required" style="color:red;">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 ">
-                                <input type="text" id="first-name" name="name" required="required" class="form-control"
-                                    placeholder="Enter product name here...">
+                                <input type="text" id="first-name" name="name" value="{{ $product->name }}"
+                                    required="required" class="form-control" placeholder="Enter product name here...">
                             </div>
                         </div>
                         <div class="item form-group">
@@ -32,7 +32,7 @@
                                     <option value="">Category Name</option>
                                     @foreach ($categories as $category)
                                         @if ($category->category_id != null)
-                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            <option value="{{ $category->id }}" @if ($product->category_id == $category->id) selected @endif>{{ $category->name }}</option>
                                         @endif
                                     @endforeach
                                 </select>
@@ -43,8 +43,8 @@
                                     class="required" style="color:red;">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 ">
-                                <input type="number" id="first-name" name="price" required="required" class="form-control "
-                                    placeholder="Enter product price here...">
+                                <input type="number" id="first-name" name="price" value="{{ $product->price }}"
+                                    required="required" class="form-control " placeholder="Enter product price here...">
                             </div>
                         </div>
                         <div class="item form-group">
@@ -52,7 +52,23 @@
                                     class="required" style="color:red;">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 ">
-                                <input type="file" id="first-name" name="image" required="required" class="form-control ">
+                                <input type="file" id="first-name" name="image" class="form-control ">
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                            <div class="col-md-3 col-sm-3 col-xs-12"></div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <img style="height:90px; width:100px;" src="{{ asset('uploads/' . $product->image) }}"
+                                    alt="Image not found.">
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Product Price<span
+                                    class="required" style="color:red;">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 ">
+                                <textarea type="text" name="description" id="description" cols="30" rows="7"
+                                    class="form-control">{{ $product->description }}</textarea>
                             </div>
                         </div>
 
