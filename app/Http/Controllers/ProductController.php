@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -14,7 +15,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::where('status', '1')->get();
+        return view('admin.product.index', compact('products'));
     }
 
     /**
@@ -40,7 +42,6 @@ class ProductController extends Controller
             'name' => $request->name,
             'category_id' => $request->category_id,
             'price' => $request->price,
-            'description' => $request->description,
         );
         if($request->hasFile('image')){
             $image = $request->file('image');
@@ -51,7 +52,7 @@ class ProductController extends Controller
         }
 
         $create = Product::create($data);
-        return redirect()->route('product.create');
+        return redirect()->route('product.list');
     }
 
     /**
@@ -71,9 +72,12 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit(Request $request, Product $product)
     {
-        //
+        $id = $request->id;
+        $product = Product::findOrFail($id);
+        $categories = Category::whereNotNull('category_id')->get();
+        return view('admin.product.edit', compact('product', 'categories'));
     }
 
     /**
@@ -85,7 +89,23 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $id = $request->id;
+        $data = array(
+            'name' => $request->name,
+            'category_id' => $request->category_id,
+            'price' => $request->price,
+        );
+        if($request->hasFile('image')){
+            $image = $request->file('image');
+            $fileName = date('dmY').time().'.'.$image->getClientOriginalExtension();
+
+            $image->move(public_path("/uploads"), $fileName);
+            $data['image'] = $fileName;
+        }
+
+        $update = Product::where('id', $id)->update($data);
+        return redirect()->route('product.list');
+
     }
 
     /**
@@ -94,8 +114,11 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy(Request $request, Product $product)
     {
-        //
+        $id = $request->id;
+        $product = Product::find($id);
+        $product->delete();
+        return response()->json('Category successfully deleted.');
     }
 }
