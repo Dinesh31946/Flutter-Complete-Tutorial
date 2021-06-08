@@ -62,15 +62,6 @@
                                     alt="Image not found.">
                             </div>
                         </div>
-                        <div class="item form-group">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Product Price<span
-                                    class="required" style="color:red;">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 ">
-                                <textarea type="text" name="description" id="description" cols="30" rows="7"
-                                    class="form-control">{{ $product->description }}</textarea>
-                            </div>
-                        </div>
 
                         <div class="clearfix"></div>
                         <div class="In-solid"></div>

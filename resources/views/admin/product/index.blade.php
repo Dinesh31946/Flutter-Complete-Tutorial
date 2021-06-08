@@ -27,7 +27,10 @@
                     <td><img style="height:80px; width:100px;" src="{{ asset('uploads/' . $product->image) }}"
                             alt="Image not found.">
                     </td>
-                    <td><button><a href="{{ route('product.extraDetails', $product->id) }}">Add</a></button></td>
+                    <td><button><a href="{{ route('product.extraDetails', $product->id) }}">
+                            @if ($product->ProductDetails != null) Update @else Add
+                                @endif
+                            </a></button></td>
                     <td>
                         <a href="{{ route('product.edit', $product->id) }}"
                             style="font-size:17px; padding:5px; color:blue"><i class="fa fa-edit"></i></a>
