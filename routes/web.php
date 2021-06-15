@@ -28,6 +28,10 @@ Route::get('/delivery', [BaseController::class, 'delivery'])->name('delivery');
 Route::get('/contact-us', [BaseController::class, 'contact'])->name('contact');
 Route::get('/cart', [BaseController::class, 'cart'])->name('cart');
 Route::get('/productView/{id}', [BaseController::class, 'productView'])->name('productView');
+Route::get('user/login', [BaseController::class, 'user_login'])->name('user_login');
+Route::get('user/register', [BaseController::class, 'user_register'])->name('user_register');
+Route::post('user/login', [BaseController::class, 'user_store'])->name('user_store');
+
 
 Route::get('/admin/login', [AdminController::class, 'login'])->name('admin.login');
 Route::post('/admin/login', [AdminController::class, 'makeLogin'])->name('admin.makeLogin');
