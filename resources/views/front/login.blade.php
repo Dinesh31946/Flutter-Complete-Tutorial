@@ -8,13 +8,22 @@
         </ul>
         <h3> Login</h3>
         <div class="well">
-            <form action="" class="form-horizontal">
+            @if ($errors->any())
+                <div class="alert alert-danger" role="alert">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                    {{-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> --}}
+                </div>
+            @endif
+            <form action="{{ route('loginCheck') }}" method="post" class="form-horizontal">
+                @csrf
                 <div class="control-group">
-                    <lable class="control-label" for="input_email">
+                    <lable class="control-label" for="email">
                         Email <sup>*</sup>
                     </lable>
                     <div class="controls">
-                        <input type="text" id="input_email" placeholder="Email">
+                        <input type="text" name="email" id="email" placeholder="Email">
                     </div>
                 </div>
 
@@ -23,7 +32,7 @@
                         Password <sup>*</sup>
                     </lable>
                     <div class="controls">
-                        <input type="password" id="password" placeholder="Password">
+                        <input type="password" name="password" id="password" placeholder="Password">
                     </div>
                 </div>
 

@@ -1,7 +1,9 @@
 <div id="header">
     <div class="container">
         <div id="welcomeLine" class="row">
-            <div class="span6">Welcome!<strong> User</strong></div>
+            @if (Auth::user())
+                <div class="span6">Welcome!<strong> {{ Auth::user()->name }}</strong></div>
+            @endif
             <div class="span6">
                 <div class="pull-right">
                     <a href="{{ route('cart') }}"><span class="">Fr</span></a>
@@ -42,9 +44,15 @@
                     <li class=""><a href="{{ route('delivery') }}">Delivery</a></li>
                     <li class=""><a href="{{ route('contact') }}">Contact</a></li>
                     <li class="">
-                        <a href="{{ route('user_login') }}" role="button" style="padding-right:0"><span
-                                class="btn btn-large btn-success">Login</span>
-                        </a>
+                        @if (Auth::user())
+                            <a href="{{ route('makeLogout') }}" role="button" style="padding-right:0"><span
+                                    class="btn btn-large btn-success">Logout</span>
+                            </a>
+                        @else
+                            <a href="{{ route('user_login') }}" role="button" style="padding-right:0"><span
+                                    class="btn btn-large btn-success">Login</span>
+                            </a>
+                        @endif
                     </li>
                 </ul>
             </div>

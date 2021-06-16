@@ -1,11 +1,10 @@
 <?php
-
 namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\User;
 use Hash;
-
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BaseController extends Controller
 {
@@ -49,6 +48,19 @@ class BaseController extends Controller
         return view('front.login');
     }
 
+    public function loginCheck(Request $request){
+        $data = array(
+            'email' => $request->email,
+            'password' => $request->password
+        );
+
+        if(Auth::attempt($data)){
+            return redirect()->route('home');
+        }else{
+            return back()->withErrors(['message' => 'invalid email and password']);
+        }
+    }
+
     public function user_register(){
         return view('front.register');
     }
@@ -62,6 +74,11 @@ class BaseController extends Controller
         );
 
         $user = User::create($data);
+        return redirect()->route('user_login');
+    }
+
+    public function makeLogout(){
+        Auth::logout();
         return redirect()->route('user_login');
     }
 }

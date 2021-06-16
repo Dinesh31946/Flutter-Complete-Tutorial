@@ -27,6 +27,11 @@
                 <ul class="nav side-menu">
                     <li><a href="{{ route('admin.dashboard') }}"><i class="fa fa-home"></i> Dashboard </a>
                     </li>
+                    <li><a><i class="fa fa-list"></i> User Manager <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="{{ route('admin.users') }}">List Users</a></li>
+                        </ul>
+                    </li>
                     <li><a><i class="fa fa-list"></i> Category Manager <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="{{ route('category.list') }}">List Category</a></li>
