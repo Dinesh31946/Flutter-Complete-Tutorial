@@ -9,40 +9,43 @@
         <h3> SHOPPING CART [ <small>3 Item(s) </small>]<a href="products.html" class="btn btn-large pull-right"><i
                     class="icon-arrow-left"></i> Continue Shopping </a></h3>
         <hr class="soft" />
-        <table class="table table-bordered">
-            <tr>
-                <th> I AM ALREADY REGISTERED </th>
-            </tr>
-            <tr>
-                <td>
-                    <form class="form-horizontal">
-                        <div class="control-group">
-                            <label class="control-label" for="inputUsername">Username</label>
-                            <div class="controls">
-                                <input type="text" id="inputUsername" placeholder="Username">
+        @if (!Auth::user())
+            <table class="table table-bordered">
+                <tr>
+                    <th> I AM ALREADY REGISTERED </th>
+                </tr>
+                <tr>
+                    <td>
+                        <form class="form-horizontal">
+                            <div class="control-group">
+                                <label class="control-label" for="inputUsername">Username</label>
+                                <div class="controls">
+                                    <input type="text" id="inputUsername" placeholder="Username">
+                                </div>
                             </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label" for="inputPassword1">Password</label>
-                            <div class="controls">
-                                <input type="password" id="inputPassword1" placeholder="Password">
+                            <div class="control-group">
+                                <label class="control-label" for="inputPassword1">Password</label>
+                                <div class="controls">
+                                    <input type="password" id="inputPassword1" placeholder="Password">
+                                </div>
                             </div>
-                        </div>
-                        <div class="control-group">
-                            <div class="controls">
-                                <button type="submit" class="btn">Sign in</button> OR <a href="register.html"
-                                    class="btn">Register Now!</a>
+                            <div class="control-group">
+                                <div class="controls">
+                                    <button type="submit" class="btn">Sign in</button> OR <a href="register.html"
+                                        class="btn">Register Now!</a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="control-group">
-                            <div class="controls">
-                                <a href="forgetpass.html" style="text-decoration:underline">Forgot password ?</a>
+                            <div class="control-group">
+                                <div class="controls">
+                                    <a href="forgetpass.html" style="text-decoration:underline">Forgot password ?</a>
+                                </div>
                             </div>
-                        </div>
-                    </form>
-                </td>
-            </tr>
-        </table>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        @endif
+
 
         <table class="table table-bordered">
             <thead>

@@ -23,7 +23,7 @@
                             {{ $product->category->name }}
                         @endif
                     </td>
-                    <td>{{ $product->price }}</td>
+                    <td><span class="font-weight-bold">Rs.</span>&nbsp;{{ $product->price }}</td>
                     <td><img style="height:80px; width:100px;" src="{{ asset('uploads/' . $product->image) }}"
                             alt="Image not found.">
                     </td>

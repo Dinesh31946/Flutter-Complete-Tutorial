@@ -29,16 +29,24 @@
                 <h3>{{ $product->ProductDetails->title }} </h3>
                 <small>- (14MP, 18x Optical Zoom) 3-inch LCD</small>
                 <hr class="soft" />
-                <form class="form-horizontal qtyFrm">
-                    <div class="control-group">
-                        <label class="control-label"><span>&#8377;{{ $product->price }}</span></label>
-                        <div class="controls">
-                            <input type="number" class="span1" placeholder="Qty." />
-                            <button type="submit" class="btn btn-large btn-primary pull-right"> Add to cart <i
-                                    class=" icon-shopping-cart"></i></button>
-                        </div>
+                <div class="control-group">
+                    <label class="control-label"><span>&#8377;{{ $product->price }}</span></label>
+                    <div class="controls">
+                        <form action="{{ route('cart.store') }}" method="post">
+                            @csrf
+                            <input type="number" name="qty" class="span1" placeholder="Qty." />
+                            <input type="hidden" value="{{ $product->id }}" name="product_id">
+                            @if (Auth::user())
+                                <button type="submit" class="btn btn-large btn-primary pull-right"> Add to cart <i
+                                        class=" icon-shopping-cart"></i></button>
+                            @else
+                                <button class="btn btn-large btn-primary pull-right"><a
+                                        style="color: #fff; text-decoration: none;" href="{{ route('user_login') }}">
+                                        Add to cart <i class=" icon-shopping-cart"></i></a></button>
+                            @endif
+                        </form>
                     </div>
-                </form>
+                </div>
 
                 <hr class="soft" />
                 <h4>{{ $product->ProductDetails->total_itmes }} items in stock</h4>

@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,6 +35,9 @@ Route::get('user/register', [BaseController::class, 'user_register'])->name('use
 Route::post('user/register', [BaseController::class, 'user_store'])->name('user_store');
 Route::post('user/login', [BaseController::class, 'loginCheck'])->name('loginCheck');
 Route::get('user/logout', [BaseController::class, 'makeLogout'])->name('makeLogout');
+
+//Cart Controller routes
+Route::post('cart/store', [CartController::class, 'store'])->name('cart.store');
 
 
 Route::get('/admin/login', [AdminController::class, 'login'])->name('admin.login');
